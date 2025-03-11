@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Add a New Book</h2>
+    <form method="post" class="mt-3">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="btn btn-success">Save Book</button>
+        <a href="{% url 'book_list' %}" class="btn btn-secondary mt-2">Back to List</a>
+    </form>
+</div>
+{% endblock %}

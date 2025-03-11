@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Book Borrowings</h2>
+    <div class="mb-3">
+        <a href="{% url 'borrow_book' %}" class="btn btn-primary">Borrow a Book</a>
+        <a href="{% url 'return_book' %}" class="btn btn-success">Return a Book</a>
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th>Borrower</th>
+                <th>Borrow Date</th>
+                <th>Return Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for borrowing in borrowings %}
+            <tr>
+                <td>{{ borrowing.book.title }}</td>
+                <td>{{ borrowing.borrower.name }}</td>
+                <td>{{ borrowing.borrow_date|date:"M d, Y H:i" }}</td>
+                <td>
+                    {% if borrowing.return_date %}
+                        {{ borrowing.return_date|date:"M d, Y H:i" }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
+                <td>
+                    {% if borrowing.is_returned %}
+                        <span class="badge bg-success">Returned</span>
+                    {% else %}
+                        <span class="badge bg-warning">Borrowed</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No borrowing records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <div class="icon" style="font-size: 50px; margin-bottom: 10px; color: #2f80ed;">📚</div>
+    <h1 style="font-size: 28px; font-weight: bold; color: #2f80ed; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);">Welcome to the Library</h1>
+    <p>Manage your book collection and borrowings with ease.</p>
+    
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-white">
+                    <h5>Book Management</h5>
+                </div>
+                <div class="card-body">
+                    <p>Add, edit, and view books in your library.</p>
+                    <a href="{% url 'add_book' %}" class="btn btn-primary w-100 mb-2">Add a New Book</a>
+                    <a href="{% url 'book_list' %}" class="btn btn-success w-100">View Books</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-header bg-info text-white">
+                    <h5>Borrowing Management</h5>
+                </div>
+                <div class="card-body">
+                    <p>Manage borrowers and book borrowings.</p>
+                    <a href="{% url 'add_borrower' %}" class="btn btn-info w-100 mb-2">Add a Borrower</a>
+                    <a href="{% url 'borrowing_list' %}" class="btn btn-warning w-100">Manage Borrowings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

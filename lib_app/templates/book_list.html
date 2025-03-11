@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Book List</h2>
+    <a href="{% url 'add_book' %}" class="btn btn-primary mb-3">Add New Book</a>
+    <a href="{% url 'borrowing_list' %}" class="btn btn-info mb-3">View Borrowings</a>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Published Date</th>
+                <th>ISBN</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.published_date }}</td>
+                <td>{{ book.isbn }}</td>
+                <td>
+                    {% if book.is_available %}
+                        <span class="badge bg-success">Available</span>
+                    {% else %}
+                        <span class="badge bg-warning">Borrowed</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'edit_book' book.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    {% if book.is_available %}
+                        <a href="{% url 'borrow_book' %}" class="btn btn-sm btn-success">Borrow</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No books available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
