@@ -20,7 +20,7 @@ A Django-based Library Management System that helps track books, borrowers, and 
 
 1. **Clone the Repository**
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/Vishnu252005/Django-Library-Mangement-System
    cd Library_Management_System
    ```
 
